@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 1261a867b4f3f3c429be4a4693d22040
+  - enabled: 1
+    path: Assets/Scenes/jumpyFloatGame.unity
+    guid: 7e04b29349d97c845a3154b5da173ddb
   m_configObjects: {}
