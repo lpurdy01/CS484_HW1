@@ -10,6 +10,7 @@ public class PlayerCameraControl : MonoBehaviour
     public GameObject camera;
     private Vector3 movementForceDirection;
     private float vertMove;
+    public float sideMovemntAngle = 90;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +30,19 @@ public class PlayerCameraControl : MonoBehaviour
     void Update()
     {
         movementForceDirection = transform.position - camera.transform.position;
+        Vector3 movementSideForceDirection = movementForceDirection;
+
+        Matrix4x4 m;
+        Quaternion rotation = Quaternion.Euler(0.0f, sideMovemntAngle, 0.0f); // Create a Rotation Quaternion
+        m = Matrix4x4.Rotate(rotation);  // Create the rotation matrix 
+
+        movementSideForceDirection = m.MultiplyPoint3x4(movementSideForceDirection); // Rotate the normal force direction vector by 90 degrees to allow for side force inputs.
+
         float moveHorizontal = Input.GetAxis("Vertical");
+        float moveSide = Input.GetAxis("Horizontal");
+
         float moveVertical = Input.GetAxis("Jump");
-        movementForceDirection = movementForceDirection * moveHorizontal;
+        movementForceDirection = (movementForceDirection * moveHorizontal) + (movementSideForceDirection * moveSide);
         vertMove = moveVertical * verticalSpeed;
         movementForceDirection.y = vertMove;
         

@@ -63,11 +63,13 @@
     <Compile Include="Assets\Camera_Rotator.cs" />
     <Compile Include="Assets\CameraControl.cs" />
     <Compile Include="Assets\CancelHandeler.cs" />
+    <Compile Include="Assets\FollowCamera.cs" />
     <Compile Include="Assets\Loader.cs" />
     <Compile Include="Assets\MouseHighlightQuit.cs" />
     <Compile Include="Assets\MouseHighlightStart.cs" />
     <Compile Include="Assets\Player_Control.cs" />
     <Compile Include="Assets\PlayerCameraControl.cs" />
+    <None Include="Assets\PlayerShader.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Levi Purdy/OneDrive/College/CS484 Computer Graphics/CS484_HW1/CS484_HW/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
