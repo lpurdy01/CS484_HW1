@@ -7,6 +7,7 @@ public class CameraMouseLook : MonoBehaviour
 
     public float lookSpeed = 5.0f;
     public float smoothing = 2.0f;
+    //public static float lookRotateXOffset = 0; 
     public GameObject playerCube;
     private Vector2 mouseRotator;
     private Vector2 smoothVar;
@@ -30,6 +31,6 @@ public class CameraMouseLook : MonoBehaviour
         mouseRotator += smoothVar;
 
         transform.localRotation = Quaternion.AngleAxis(-mouseRotator.y, Vector3.right);
-        playerCube.transform.localRotation = Quaternion.AngleAxis(mouseRotator.x, playerCube.transform.up);
+        playerCube.transform.localRotation = Quaternion.AngleAxis(mouseRotator.x - GlobalVariables.lookRotateXOffset, playerCube.transform.up);
     }
 }
