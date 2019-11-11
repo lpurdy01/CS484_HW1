@@ -256,8 +256,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: -0.185453, y: 0.814078, z: -0.40415773, w: -0.37355152}
-  m_LocalPosition: {x: 928.6509, y: 605.365, z: 852.9525}
+  m_LocalRotation: {x: -0.124375984, y: 0.8570781, z: -0.24442777, w: -0.43612266}
+  m_LocalPosition: {x: 1150.6978, y: 371.0633, z: 935.17847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -358,13 +358,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noiseMapGeneration: {fileID: 756090747}
   terr: {fileID: 756090744}
-  map1Scale: 50
+  map1Scale: 30
   texture: {fileID: 0}
-  height1Multiplier: 0.5
+  textureAfter: {fileID: 0}
+  height1Multiplier: 0.3
   map2Scale: 200
-  height2Multiplier: 1
+  height2Multiplier: 1.5
   map3Scale: 400
-  height3Multiplier: 1
+  height3Multiplier: 2
   seaLevelVal: 0.2
 --- !u!114 &756090747
 MonoBehaviour:

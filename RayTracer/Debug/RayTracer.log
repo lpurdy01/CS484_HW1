@@ -1,0 +1,5 @@
+﻿  PPMTests.cpp
+C:\Users\Levi Purdy\OneDrive\College\CS484 Computer Graphics\CS484_HW1\RayTracer\PPMTests.cpp(30,10): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Levi Purdy\OneDrive\College\CS484 Computer Graphics\CS484_HW1\RayTracer\PPMTests.cpp(31,14): warning C4244:  'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Levi Purdy\OneDrive\College\CS484 Computer Graphics\CS484_HW1\RayTracer\PPMTests.cpp(31,65): warning C4305:  'argument': truncation from 'double' to 'float'
+  RayTracer.vcxproj -> C:\Users\Levi Purdy\OneDrive\College\CS484 Computer Graphics\CS484_HW1\RayTracer\Debug\RayTracer.exe

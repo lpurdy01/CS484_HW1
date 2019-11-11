@@ -11,6 +11,7 @@ public class TerrainHeightMapApplier : MonoBehaviour
     public float map1Scale;
 
     public Texture2D texture;
+    public Texture2D textureAfter;
 
     public float height1Multiplier;
 
@@ -24,10 +25,25 @@ public class TerrainHeightMapApplier : MonoBehaviour
 
     public float seaLevelVal;
 
+    private bool updatingTerrain = false;
+
 
     void Start()
     {
         GenreateAndSetTerrain();
+    }
+
+    void Update()
+    {
+        float testToRunUpdate = Input.GetAxis("Jump");
+
+        if (testToRunUpdate > 0 && !updatingTerrain)
+        {
+            updatingTerrain = true;
+            GenreateAndSetTerrain();
+            updatingTerrain = false;
+        }
+
     }
 
     void GenreateAndSetTerrain()
@@ -54,6 +70,11 @@ public class TerrainHeightMapApplier : MonoBehaviour
         Texture2D tileTexture = BuildTexture(heightMap);
         texture = tileTexture;
         // this.tileRenderer.material.mainTexture = tileTexture;
+
+        heightMap = matrixPass(heightMap);
+
+        Texture2D tileTexture2 = BuildTexture(heightMap);
+        textureAfter = tileTexture2;
 
         terr.terrainData.SetHeights(0, 0, heightMap);
         //UpdateMeshVertices(heightMap);
@@ -97,7 +118,7 @@ public class TerrainHeightMapApplier : MonoBehaviour
             for (int yIndex = 0; yIndex < mapY; yIndex++)
             {
                 // calculate sample indices based on the coordinates and the scale
-                map1[xIndex, yIndex] = (map1[xIndex, yIndex] + map2[xIndex, yIndex])/2 ;
+                map1[xIndex, yIndex] = (map1[xIndex, yIndex] + map2[xIndex, yIndex]) / 2;
             }
         }
         return map1;
@@ -119,5 +140,48 @@ public class TerrainHeightMapApplier : MonoBehaviour
         return map1;
     }
 
+    private float[,] matrixPass(float[,] map1)
+    {
 
+        int mapX = map1.GetLength(0);
+        int mapY = map1.GetLength(1);
+
+        float[,] noiseMap = new float[mapX, mapY];
+
+        for (int xIndex = 1; xIndex+1 < mapX; xIndex++)
+        {
+            for (int yIndex = 1; yIndex+1 < mapY; yIndex++)
+            {
+                float centerValue = 0;
+
+                //Top left
+                centerValue = centerValue + map1[xIndex - 1, yIndex - 1] * 0;
+                //Top center
+                centerValue = centerValue + map1[xIndex, yIndex - 1] * - 2;
+                //Top right
+                centerValue = centerValue + map1[xIndex + 1, yIndex - 1] * 0;
+
+                //Middle left
+                centerValue = centerValue + map1[xIndex - 1, yIndex] * - 2;
+                //cener
+                centerValue = centerValue + map1[xIndex, yIndex] * 10;
+                //Middle right
+                centerValue = centerValue + map1[xIndex + 1, yIndex] * - 2;
+
+                //Lower left
+                centerValue = centerValue + map1[xIndex - 1, yIndex + 1] * 0;
+                //lower center
+                centerValue = centerValue + map1[xIndex, yIndex - 1] * - 2;
+                //lower right
+                centerValue = centerValue + map1[xIndex + 1, yIndex - 1] * 0;
+
+                centerValue = centerValue/2;
+
+                noiseMap[xIndex, yIndex] = centerValue;
+
+            }
+        }
+        return noiseMap;
+
+    }
 }
